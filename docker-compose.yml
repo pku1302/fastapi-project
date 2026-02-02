@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:15
+    container_name: my-db
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    container_name: my-fastapi
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://user:password@db:5432/mydb
+    volumes:
+      - .:/app
+
+volumes:
+  postgres_data:

@@ -6,7 +6,9 @@ from app.services.user_login import authenticate_user
 from app.schemas.user_login_schema import TokenResponse
 from app.database.database import SessionDep
 from datetime import timedelta
-from app.core.config import settings
+from app.core.config import get_settings
+
+settings = get_settings()
 
 router = APIRouter(prefix="/token", tags=["auth"])
 

@@ -18,9 +18,9 @@ services:
     depends_on:
       - db
     ports:
-      - "8000:8000"
-    environment:
-      DATABASE_URL: postgresql://user:password@db:5432/mydb
+      - "10000:10000"
+    env_file:
+      - .env
     volumes:
       - .:/app
 

@@ -7,7 +7,9 @@ from fastapi.security import OAuth2PasswordBearer
 from typing import Annotated
 from app.models.user import User
 from app.database.database import SessionDep
-from app.core.config import settings
+from app.core.config import get_settings
+
+settings = get_settings()
 
 class TokenData(BaseModel):
     userid: str | None = None

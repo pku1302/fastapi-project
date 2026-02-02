@@ -6,3 +6,4 @@ PyJWT
 pwdlib[argon2]
 alembic
 pydantic-settings
+uvicorn[standard]

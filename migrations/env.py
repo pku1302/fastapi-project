@@ -8,6 +8,7 @@ from sqlmodel import SQLModel
 
 from app.models.post import Post
 from app.models.user import User
+from app.models.comment import Comment
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

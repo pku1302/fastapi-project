@@ -1,5 +1,6 @@
 from datetime import datetime
 from app.models.post import Post
+from app.models.comment import Comment
 
 def create_post(
     *,

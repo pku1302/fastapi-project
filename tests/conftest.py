@@ -1,8 +1,11 @@
+import os
 import pytest
 from fastapi.testclient import TestClient
 from sqlmodel import Session, create_engine, SQLModel
 from app.main import app
 from app.database.database import get_session
+
+os.environ["ENV"] = "test"
 
 TEST_DATABASE_URL = "postgresql://postgres:rjsqod1399#@localhost:5432/testdb"
 

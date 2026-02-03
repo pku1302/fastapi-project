@@ -1,7 +1,8 @@
 from app.schemas.post_schema import PostCreate, PostUpdate, PostResponse, PostListResponse
 from sqlmodel import select, desc, func
-from app.models.post import Post
 from datetime import datetime
+from app.models.post import Post
+from app.models.comment import Comment
 
 SORT_MAP = {
     "created_at": Post.created_at
@@ -55,8 +56,21 @@ def get_posts(session, offset, limit, sort, order
 # 단일 글 조회
 def get_post(session, post_id):
     post = get_active_post(session, post_id)
+
     if not post:
         return None
+
+    comments = session.exec(
+        select(Comment)
+        .where(Comment.post_id == post_id)
+    ).all()
+
+    for c in comments:
+        if c.is_deleted:
+            c.content = "삭제된 댓글입니다."
+
+    post.comments = comments
+
     return post
     
 # 글 수정

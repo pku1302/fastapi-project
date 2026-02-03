@@ -1,6 +1,6 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
-from app.routers import post, signup, login,protected
+from app.routers import post, signup, login,protected, comment
 from app.database.database import engine
 from sqlmodel import SQLModel
 
@@ -15,6 +15,7 @@ app.include_router(post.router)
 app.include_router(signup.router)
 app.include_router(login.router)
 app.include_router(protected.router)
+app.include_router(comment.router)
 
 @app.get("/")
 async def root():
